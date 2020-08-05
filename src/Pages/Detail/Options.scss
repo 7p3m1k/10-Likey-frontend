@@ -1,0 +1,16 @@
+.Options {
+  margin-top: 20px;
+  height: 77px;
+
+  ul {
+    display: flex;
+    overflow: scroll;
+
+    .optionsImg {
+      width: 72px;
+      height: 72px;
+      margin: 0 5px 5px 0;
+      cursor: pointer;
+    }
+  }
+}
