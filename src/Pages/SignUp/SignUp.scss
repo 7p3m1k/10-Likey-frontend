@@ -1,0 +1,246 @@
+.wrapper {
+  padding-top: 110px;
+
+  .contentArea {
+    margin-top: 70px;
+
+    .signUpWarp {
+      padding: 0 20px 32px;
+      box-sizing: border-box;
+      margin: 0 auto;
+      max-width: 420px;
+
+      .signUpHeader {
+        margin-bottom: 40px;
+        text-align: center;
+
+        h2 {
+          margin-top: 15px;
+          margin-bottom: 15px;
+          text-align: center;
+          font-size: 24px;
+          font-weight: 500;
+        }
+
+        .headerGray {
+          text-align: center;
+          line-height: 20px;
+          color: #999999;
+          font-size: 14px;
+        }
+      }
+      .signUpFooter {
+        .socialBox {
+          margin-bottom: 35px;
+          .kakao {
+            background-color: #feec34;
+            border-color: #feec34;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border-radius: 3px;
+
+            .kakaoLogo {
+              width: 24px;
+              height: 25px;
+            }
+            .kakaoText {
+              width: 300px;
+              font-size: 15px;
+              text-align: center;
+              display: inline-block;
+              box-sizing: border-box;
+            }
+          }
+
+          .facebook {
+            background-color: #21538a;
+            border-color: #21538a;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            box-sizing: border-box;
+            color: #fff;
+            border-radius: 3px;
+
+            .facebookText {
+              padding-top: 12px;
+              width: 310px;
+              color: #fff;
+              font-size: 15px;
+              text-align: center;
+              box-sizing: border-box;
+            }
+
+            .facebookLogo {
+              padding-top: 7px;
+              width: 24px;
+              height: 25px;
+            }
+          }
+        }
+        .orLine {
+          margin-bottom: 35px !important;
+          border-bottom: 1px solid #ccc;
+          position: relative;
+
+          .orText {
+            background-color: #fff;
+            display: block;
+            left: 50%;
+            margin-left: -35px;
+            position: absolute;
+            width: 70px;
+            bottom: -10px;
+            text-align: center;
+            color: #606060;
+          }
+        }
+        .inputArea {
+          display: flex;
+          flex-direction: column;
+
+          input::placeholder {
+            color: #999999;
+          }
+          input:focus {
+            border: black 1px solid;
+          }
+
+          .noneValue {
+            color: #fe0000;
+            font-size: 10px;
+            margin-top: 10px;
+            display: none;
+            &.value {
+              display: inline;
+            }
+          }
+
+          .inputHigh {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #e5e5e5;
+            padding: 9px 12px;
+            outline: none;
+            box-sizing: border-box;
+
+            &.value {
+              border: 1px solid #fe0000;
+            }
+          }
+
+          .inputLow {
+            margin-top: 15px;
+            width: 100%;
+            height: 40px;
+            border: 1px solid #e5e5e5;
+            padding: 9px 12px;
+            outline: none;
+            box-sizing: border-box;
+
+            &.value {
+              border: 1px solid #fe0000;
+            }
+          }
+        }
+
+        .twoDragon {
+          margin-top: 40px;
+        }
+        .signUpFooterText {
+          padding-top: 7px;
+          font-size: 11px;
+          line-height: 1.5;
+        }
+        .selection {
+          p {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #8d8d8d;
+          }
+
+          u {
+            text-decoration: underline;
+          }
+        }
+        .signUpFooterTextEnd {
+          padding-top: 40px;
+          font-size: 11px;
+          line-height: 1.5;
+
+          div {
+            padding-top: 5px;
+          }
+        }
+        .signUpEndText {
+          padding: 20px 0;
+          text-align: center;
+          font-size: 14px;
+          line-height: 1.5;
+        }
+        .signUpBtn {
+          height: 48px;
+          font-size: 15px;
+          width: 100%;
+          color: #fff;
+          background-color: #000000;
+          cursor: pointer;
+          border-radius: 2px;
+          line-height: 100%;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+.selectionHide {
+  margin-top: 30px;
+
+  .birthDay {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #e5e5e5;
+    padding: 9px 12px;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .gender {
+    display: flex;
+    margin-top: 15px;
+
+    .genderCheck {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #999;
+      height: 40px;
+      width: 100%;
+      font-size: 13px;
+      cursor: pointer;
+      margin: 5px;
+    }
+  }
+}
+
+.none {
+  display: none;
+}
+
+.genderDark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  height: 40px;
+  width: 100%;
+  font-size: 13px;
+  cursor: pointer;
+  margin: 5px;
+  font-weight: bolder;
+}
