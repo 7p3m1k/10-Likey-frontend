@@ -1,0 +1,40 @@
+{
+  "product": {
+    "images": [
+      "https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/CT3732-100/7a62750f-ef46-4aed-98a8-340e534509e4_2.jpg?gallery",
+      "https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/CT3732-100/7a62750f-ef46-4aed-98a8-340e534509e4_2.jpg?gallery",
+      "https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/CT3732-100/21cf7223-b77c-46c6-984d-3a0c91dc04ea_3.jpg?gallery",
+      "https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/CT3732-100/dd4fa3b7-59d0-41bc-8f14-d8d462e15aaf_4.jpg?gallery",
+      "https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/CT3732-100/2858f82f-ec23-43ec-9413-03f326af39ac_7.jpg?gallery",
+      "https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/CT3732-100/2858f82f-ec23-43ec-9413-03f326af39ac_7.jpg?gallery",
+      "https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/CT3732-100/e26b9e13-ed1a-4331-bf15-5dbbbb6b843e_8.jpg?gallery"
+    ],
+    "title": "나이키 에어 줌 인피니티 투어 NRG",
+    "categories": "성인공용 신발 골프",
+    "price": 239000,
+    "sizes": [
+      {
+        "size": 225,
+        "count": 0
+      },
+      {
+        "size": 230,
+        "count": 6
+      },
+      {
+        "size": 245,
+        "count": 5
+      }
+    ],
+    "options": [
+      {
+        "productId": "CAD@",
+        "imageUrl": "https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/CT3732-100/e26b9e13-ed1a-4331-bf15-5dbbbb6b843e_8.jpg?gallery"
+      },
+      {
+        "productId": "asdsf@",
+        "imageUrl": "https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/CT3732-100/e26b9e13-ed1a-4331-bf15-5dbbbb6b843e_8.jpg?gallery"
+      }
+    ]
+  }
+}
