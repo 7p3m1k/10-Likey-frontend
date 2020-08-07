@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./SubMenu.scss";
-import NavData from "../navData";
+import NavData from "../NavData";
 
 class SubMenu extends Component {
   render() {

@@ -1,13 +1,48 @@
 import React, { Component } from "react";
 import CartList from "../../Components/CartList/CartList";
 import "./Cart.scss";
-// import { cartAPI } from "../../config";
+import { API } from "../../config";
+
 class Cart extends Component {
   state = {
     carts: [],
   };
+
+  deleteAllHandler = () => {
+    fetch(`${API}/cart`, {
+      method: "DELETE",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    }).then((res) => {
+      this.setState({ carts: [] });
+    });
+  };
+
+  deleteOneHandler = ({ productId, size }) => {
+    fetch(`${API}/cart/${productId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        size: size,
+      }),
+    }).then((res) => {
+      this.setState({
+        carts: this.state.carts.filter((cart) => {
+          if (cart.productId === productId && cart.size === size) {
+            return false;
+          }
+          return true;
+        }),
+      });
+    });
+  };
+
   componentDidMount = () => {
-    fetch("http://10.58.1.133:8000/cart", {
+    fetch(`${API}/cart`, {
       headers: {
         Authorization: localStorage.getItem("token"),
       },
@@ -15,6 +50,7 @@ class Cart extends Component {
       .then((res) => res.json())
       .then((res) => this.setState({ carts: res.carts }));
   };
+
   render() {
     const { carts } = this.state;
     const totalPrice =
@@ -43,11 +79,17 @@ class Cart extends Component {
                   <div className="cartPage">
                     <div className="cartFlex">
                       <div className="cartLeft">
-                        <div className="allDelete">
+                        <div
+                          className="allDelete"
+                          onClick={this.deleteAllHandler}
+                        >
                           <a>전체삭제</a>
                         </div>
                         {carts.map((cart) => (
-                          <CartList cart={cart} />
+                          <CartList
+                            cart={cart}
+                            deleteOneHandler={this.deleteOneHandler}
+                          />
                         ))}
                       </div>
                       <div className="cartRight">

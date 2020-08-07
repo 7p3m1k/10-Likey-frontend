@@ -1,2 +1,1 @@
-export const detailAPI = "http://10.58.1.133:8000/product/";
-export const cartAPI = "http://10.58.1.133:8000/cart/";
+export const API = "http://10.58.7.148:8000";

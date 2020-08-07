@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import SignIn from "../SignIn/SignIn";
-import { detailAPI } from "../../config";
+import { API } from "../../config";
 import Secondlist from "./Secondlist";
 import "./Nav.scss";
+
 class Nav extends Component {
   state = {
     active: "",
@@ -11,23 +12,34 @@ class Nav extends Component {
     value: "",
     products: [],
     isModalOpen: false,
+    isLogin: localStorage.getItem("token"),
   };
+
   componentDidMount() {
-    fetch(`${detailAPI}titles`)
+    fetch(`${API}/titles`)
       .then((res) => res.json())
       .then((res) => {
         this.setState({ products: res.titles });
       });
   }
+
   getValue = (e) => {
     this.setState({ value: e.target.value });
   };
-  openModal = () => {
-    this.setState({ isModalOpen: true });
-  };
+
   closeModal = () => {
     this.setState({ isModalOpen: false });
   };
+
+  logOutHandler = () => {
+    localStorage.removeItem("token");
+    this.setState({ isLogin: false });
+  };
+
+  logInHandler = () => {
+    this.setState({ isLogin: true });
+  };
+
   render() {
     const { mask, value, products } = this.state;
     const { getValue } = this;
@@ -53,31 +65,66 @@ class Nav extends Component {
                 />
               </li>
             </ul>
-            <ul className="navFirstRight">
-              <li className="rightList">
-                <Link className="signUp" to="/signup">
-                  회원가입
-                </Link>
-              </li>
-              <li className="rightList">
-                <span onClick={this.openModal}>&nbsp; / 로그인</span>
-                <SignIn
-                  isOpen={this.state.isModalOpen}
-                  close={this.closeModal}
-                />
-              </li>
-              <li className="rightList">고객센터</li>
-              <li className="rightList">
-                <img className="cart" alt="cart" src="/Images/Main/cart.png" />
-              </li>
-              <li className="rightList">
-                <img
-                  className="address"
-                  alt="address"
-                  src="/Images/Main/대한민국.png"
-                />
-              </li>
-            </ul>
+            {this.state.isLogin ? (
+              <ul className="navFirstRight">
+                <li className="rightList">
+                  <Link className="signUp" to="/" onClick={this.logOutHandler}>
+                    로그아웃 /
+                  </Link>
+                </li>
+                <li className="rightList">고객센터</li>
+                <li className="rightList">
+                  <Link to="/cart">
+                    <img
+                      className="cart"
+                      alt="cart"
+                      src="/Images/Main/cart.png"
+                    />
+                  </Link>
+                </li>
+                <li className="rightList">
+                  <img
+                    className="address"
+                    alt="address"
+                    src="/Images/Main/대한민국.png"
+                  />
+                </li>
+              </ul>
+            ) : (
+              <ul className="navFirstRight">
+                <li className="rightList">
+                  <Link className="signUp" to="/signup">
+                    회원가입
+                  </Link>
+                </li>
+                <li className="rightList">
+                  <span onClick={() => this.setState({ isModalOpen: true })}>
+                    &nbsp; / 로그인
+                  </span>
+                  {this.state.isModalOpen && (
+                    <SignIn
+                      close={this.closeModal}
+                      logInHandler={this.logInHandler}
+                    />
+                  )}
+                </li>
+                <li className="rightList">고객센터</li>
+                <li className="rightList">
+                  <img
+                    className="cart"
+                    alt="cart"
+                    src="/Images/Main/cart.png"
+                  />
+                </li>
+                <li className="rightList">
+                  <img
+                    className="address"
+                    alt="address"
+                    src="/Images/Main/대한민국.png"
+                  />
+                </li>
+              </ul>
+            )}
           </div>
           <div className="navSecond">
             <div className="logoWrapper">

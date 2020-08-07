@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "../SignUp/SignUp.scss";
+import { API } from "../../config";
 const { Kakao } = window;
+
 class SignUp extends Component {
   constructor() {
     super();
@@ -29,8 +31,8 @@ class SignUp extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   signUpHandler = () => {
-    const { email, password, name, phone, passwordCheck } = this.state;
-    fetch("http://10.58.1.144:8000/auth/signup", {
+    const { email, password, name, phone } = this.state;
+    fetch(`${API}/auth/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,22 +49,28 @@ class SignUp extends Component {
         alert(res.message);
       });
   };
-  kakaoLogin = () => {
+  kakaoLogin = ({ push }) => {
     Kakao.Auth.login({
       success: function (authObj) {
-        console.log(JSON.stringify(authObj));
-        fetch("http://10.58.1.144:8000/auth/kakao", {
+        fetch(`${API}/auth/kakao`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: authObj.access_token,
           },
-        });
+        })
+          .then((res) => res.json())
+          .then(({ message }) => {
+            //구조분해할당
+            if (message === "User created") {
+              alert("회원가입 하셨습니다!");
+              push("/");
+            }
+          });
       },
       fail: function (err) {
         alert(JSON.stringify(err));
       },
-      // .then(res => ())
     });
   };
   render() {
@@ -73,15 +81,7 @@ class SignUp extends Component {
       signUpHandler,
       kakaoLogin,
     } = this;
-    const {
-      check,
-      genderChecks,
-      email,
-      password,
-      passwordCheck,
-      name,
-      phone,
-    } = this.state;
+    const { check, genderChecks, email, password } = this.state;
     return (
       <>
         <div className="wrapper">
@@ -98,7 +98,10 @@ class SignUp extends Component {
                 <div className="socialBox">
                   <div className="kakao">
                     <img className="kakaoLogo" src="/Images/SignUp/kakao.png" />
-                    <div className="kakaoText" onClick={kakaoLogin}>
+                    <div
+                      className="kakaoText"
+                      onClick={() => kakaoLogin(this.props.history)}
+                    >
                       카카오 계정으로 신규가입
                     </div>
                   </div>
@@ -145,6 +148,7 @@ class SignUp extends Component {
                     className={`inputLow ${password !== null ? "value" : ""}`}
                     name="password"
                     placeholder="영문+숫자+특수문자 8~16자리(특수문자 괄호()는 사용불가)"
+                    type="password"
                     onChange={inputHandler}
                   />
                   <span
@@ -160,6 +164,7 @@ class SignUp extends Component {
                     }`}
                     name="passwordCheck"
                     placeholder="패스워드를 다시 입력해 주세요."
+                    type="password"
                     onChange={inputHandler}
                   />
                   <span

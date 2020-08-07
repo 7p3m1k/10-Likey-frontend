@@ -3,7 +3,7 @@ import DetailLeft from "./DetailLeft";
 import DetailRight from "./DetailRight";
 import PageTop from "../../Components/PageTop/PageTop";
 import CartModal from "../../Components/CartModal/CartModal";
-import { detailAPI, cartAPI } from "../../config";
+import { API } from "../../config";
 import "./Detail.scss";
 
 class Detail extends Component {
@@ -25,7 +25,7 @@ class Detail extends Component {
   }
 
   doRequest = () => {
-    fetch(`${detailAPI}${this.props.match.params.productId}`)
+    fetch(`${API}/product/${this.props.match.params.productId}`)
       .then((res) => res.json())
       .then((res) => {
         const {
@@ -90,7 +90,7 @@ class Detail extends Component {
     const productId = this.props.match.params.productId;
     const { size, count } = this.state.sizes;
 
-    fetch(cartAPI, {
+    fetch(`${API}/cart`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json", //method가 post일때 body내용이 json형식이라는 것을 미리 알려줌. body가없는 getmethod는 필요없음 ㅎㅎ
@@ -113,8 +113,7 @@ class Detail extends Component {
 
   render() {
     const productId = this.props.match.params.productId;
-    console.log(this.state);
-    console.log(productId);
+
     return (
       <div className="Detail">
         <PageTop />

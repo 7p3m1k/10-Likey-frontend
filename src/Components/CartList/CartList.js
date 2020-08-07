@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./CartList.scss";
+
 class CartList extends Component {
   render() {
     const { count, imageUrl, title, price, size, productId } = this.props.cart;
@@ -19,7 +20,12 @@ class CartList extends Component {
           <div className="totalPrice">
             {(count * price).toLocaleString()} 원
           </div>
-          <div>&times;</div>
+          <div
+            className="xPointer"
+            onClick={() => this.props.deleteOneHandler({ productId, size })}
+          >
+            &times;
+          </div>
         </div>
         <div className="itemWish">
           <span>위시리스트에 추가</span>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SubCategories from "./SubCategories";
-import NavData from "../navData";
+import NavData from "../NavData";
 import "./SubKids.scss";
 
 class SubKids extends Component {

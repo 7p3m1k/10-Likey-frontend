@@ -41,13 +41,16 @@
     font-size: 15px;
     width: 98px;
   }
+
+  .xPointer {
+    cursor: pointer;
+  }
 }
 
 .itemWish {
   margin-top: 5px;
   padding: 0 0 25px 158px;
   border-bottom: 1px solid #dedfda;
-  width: 858px;
 
   span {
     color: #666;
