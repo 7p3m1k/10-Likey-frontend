@@ -1,11 +1,14 @@
 .DetailLeft {
   margin-right: 30px;
+
   ul {
     display: flex;
     flex-wrap: wrap;
+
     .imgList {
       padding-top: 12px;
       padding-left: 12px;
+
       .imgbox img {
         width: 400px;
         height: 400px;
