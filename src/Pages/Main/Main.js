@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Nav from "../../Components/Nav/Nav";
 import mainData from "./mainData";
+import PageTop from "../../Components/PageTop/PageTop";
 import "./Main.scss";
 
 class Main extends Component {
@@ -14,6 +15,7 @@ class Main extends Component {
 
     return (
       <div className="Main">
+        <PageTop />
         <Nav />
         <div className="wrapper">
           <div className="header">

@@ -14,6 +14,7 @@ export default class DetailRight extends Component {
       disabled,
       options,
       handleQauntity,
+      handleMiniCart,
       selectedSize,
       history,
     } = this.props;
@@ -40,7 +41,7 @@ export default class DetailRight extends Component {
                 className={
                   el.counts > 0 ? "inStock stockBtn" : "notInStock stockBtn"
                 }
-                onClick={() => selectedSize(el.counts)}
+                onClick={() => selectedSize(el)}
               >
                 {el.size}
               </button>
@@ -64,7 +65,9 @@ export default class DetailRight extends Component {
         <div className="orderWrap">
           <button className="orderNow">바로구매</button>
           <div>
-            <button className="add cart">장바구니</button>
+            <button className="add cart" onClick={handleMiniCart}>
+              장바구니
+            </button>
             <button className="add">위시리스트 ♡</button>
           </div>
         </div>

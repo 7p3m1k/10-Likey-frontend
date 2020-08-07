@@ -9,10 +9,6 @@ class button extends Component {
     };
   }
 
-  openModal = () => {
-    this.setState({ isModalOpen: true });
-  };
-
   closeModal = () => {
     this.setState({ isModalOpen: false });
   };
@@ -20,7 +16,9 @@ class button extends Component {
   render() {
     return (
       <>
-        <button onClick={this.openModal}>Modal Open</button>
+        <button onClick={() => this.setState({ isModalOpen: true })}>
+          Modal Open
+        </button>
         <SignIn isOpen={this.state.isModalOpen} close={this.closeModal} />
       </>
     );

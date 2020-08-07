@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import SignIn from "../SignIn/SignIn";
 import { detailAPI } from "../../config";
 import Secondlist from "./Secondlist";
-// import response from "../response.json";
 import "./Nav.scss";
-
 class Nav extends Component {
   state = {
     active: "",
     mask: "",
     value: "",
     products: [],
+    isModalOpen: false,
   };
-
   componentDidMount() {
     fetch(`${detailAPI}titles`)
       .then((res) => res.json())
@@ -20,11 +19,15 @@ class Nav extends Component {
         this.setState({ products: res.titles });
       });
   }
-
   getValue = (e) => {
     this.setState({ value: e.target.value });
   };
-
+  openModal = () => {
+    this.setState({ isModalOpen: true });
+  };
+  closeModal = () => {
+    this.setState({ isModalOpen: false });
+  };
   render() {
     const { mask, value, products } = this.state;
     const { getValue } = this;
@@ -52,15 +55,16 @@ class Nav extends Component {
             </ul>
             <ul className="navFirstRight">
               <li className="rightList">
-                <span>
-                  <Link className="signUp" to="/signup">
-                    회원가입
-                  </Link>
-                  /
-                  <Link className="signIn" to="/signin">
-                    로그인
-                  </Link>
-                </span>
+                <Link className="signUp" to="/signup">
+                  회원가입
+                </Link>
+              </li>
+              <li className="rightList">
+                <span onClick={this.openModal}>&nbsp; / 로그인</span>
+                <SignIn
+                  isOpen={this.state.isModalOpen}
+                  close={this.closeModal}
+                />
               </li>
               <li className="rightList">고객센터</li>
               <li className="rightList">
@@ -124,7 +128,7 @@ class Nav extends Component {
                         <li key={idx} className="filterKeyword">
                           <Link
                             className="filterLink"
-                            to={`/detail/:${productId}`}
+                            to={`/detail/${productId}`}
                           >
                             {title}
                           </Link>
@@ -145,5 +149,4 @@ class Nav extends Component {
     );
   }
 }
-
 export default Nav;

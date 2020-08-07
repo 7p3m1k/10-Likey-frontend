@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "../SignUp/SignUp.scss";
-
 const { Kakao } = window;
-
 class SignUp extends Component {
   constructor() {
     super();
@@ -16,7 +14,6 @@ class SignUp extends Component {
       phone: null,
     };
   }
-
   checkBoxHandler = () => {
     const { check } = this.state;
     if (check === false) {
@@ -25,18 +22,14 @@ class SignUp extends Component {
       this.setState({ check: false });
     }
   };
-
   genderBoxHandler = (e) => {
     this.setState({ genderChecks: e.target.dataset.name });
   };
-
   inputHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
   signUpHandler = () => {
     const { email, password, name, phone, passwordCheck } = this.state;
-
     fetch("http://10.58.1.144:8000/auth/signup", {
       method: "POST",
       headers: {
@@ -54,7 +47,6 @@ class SignUp extends Component {
         alert(res.message);
       });
   };
-
   kakaoLogin = () => {
     Kakao.Auth.login({
       success: function (authObj) {
@@ -73,7 +65,6 @@ class SignUp extends Component {
       // .then(res => ())
     });
   };
-
   render() {
     const {
       checkBoxHandler,
@@ -82,7 +73,6 @@ class SignUp extends Component {
       signUpHandler,
       kakaoLogin,
     } = this;
-
     const {
       check,
       genderChecks,
@@ -92,7 +82,6 @@ class SignUp extends Component {
       name,
       phone,
     } = this.state;
-
     return (
       <>
         <div className="wrapper">
@@ -109,7 +98,6 @@ class SignUp extends Component {
                 <div className="socialBox">
                   <div className="kakao">
                     <img className="kakaoLogo" src="/Images/SignUp/kakao.png" />
-
                     <div className="kakaoText" onClick={kakaoLogin}>
                       카카오 계정으로 신규가입
                     </div>
@@ -153,7 +141,6 @@ class SignUp extends Component {
                       ? "이메일 형태로 입력해주세요. 해당 계정으로 주문 내역이 발송됩니다."
                       : "필수 입력 항목입니다."}
                   </span>
-
                   <input
                     className={`inputLow ${password !== null ? "value" : ""}`}
                     name="password"
@@ -202,7 +189,7 @@ class SignUp extends Component {
                       this.state.phone !== null ? "value" : ""
                     }`}
                     name="phone"
-                    placeholder="휴대폰 번호 '-'표 없이 입력해 주세요."
+                    placeholder="휴대폰 번호 ‘-’표 없이 입력해 주세요."
                     onChange={inputHandler}
                   />
                   <span
@@ -323,5 +310,4 @@ class SignUp extends Component {
     );
   }
 }
-
 export default SignUp;

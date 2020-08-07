@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import DetailLeft from "./DetailLeft";
 import DetailRight from "./DetailRight";
-import { detailAPI } from "../../config";
+import PageTop from "../../Components/PageTop/PageTop";
+import CartModal from "../../Components/CartModal/CartModal";
+import { detailAPI, cartAPI } from "../../config";
 import "./Detail.scss";
 
 class Detail extends Component {
@@ -17,15 +19,13 @@ class Detail extends Component {
       price: 0,
       options: [],
       disabled: false,
+      miniCart: false,
+      selectedSize: 0,
     };
   }
 
   doRequest = () => {
-    fetch(`${detailAPI}${this.props.match.params.productId}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(`${detailAPI}${this.props.match.params.productId}`)
       .then((res) => res.json())
       .then((res) => {
         const {
@@ -36,6 +36,7 @@ class Detail extends Component {
           sizes,
           options,
         } = res.product;
+
         this.setState({
           images,
           title,
@@ -75,17 +76,48 @@ class Detail extends Component {
   //사이즈버튼 클릭시 실행되는 함수
   //해당 사이즈의 재고(counts)가 0일때 수량조절버튼을 disabled="true"로, 0이 아닐때 disabled="false" (true로 초기에설정함으로써 버튼이 한번도 안눌렸을땐 활성화X)
   //해당사이즈의 재고량을 state의 maxQuantity키의 값으로 저장한다.
+
   selectedSize = (s) => {
     this.setState({
-      disabled: s === 0 ? true : false,
+      disabled: s.counts === 0 ? true : false,
       quantity: 1,
-      maxQuantity: s,
+      maxQuantity: s.counts,
+      selectedSize: s.size,
+    });
+  };
+
+  handleMiniCart = () => {
+    const productId = this.props.match.params.productId;
+    const { size, count } = this.state.sizes;
+
+    fetch(cartAPI, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", //method가 post일때 body내용이 json형식이라는 것을 미리 알려줌. body가없는 getmethod는 필요없음 ㅎㅎ
+        Authorization:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjJlNWU1Yzg5NThlZTY5MmFjM2Y5OWEiLCJpYXQiOjE1OTcwMzY5Nzh9.8GkIA0kB9DeOSSDTNI0MVXNxx-kOUyv33Lfp9efgMI4",
+      },
+      body: JSON.stringify({
+        productId,
+        size,
+        count,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+
+    this.setState({
+      miniCart: !this.state.miniCart,
     });
   };
 
   render() {
+    const productId = this.props.match.params.productId;
+    console.log(this.state);
+    console.log(productId);
     return (
       <div className="Detail">
+        <PageTop />
         <div className="DetailLeft">
           <DetailLeft images={this.state.images} />
         </div>
@@ -96,8 +128,17 @@ class Detail extends Component {
             handleQauntity={this.handleQauntity}
             selectedSize={this.selectedSize}
             handleOption={this.handleOption}
+            handleMiniCart={this.handleMiniCart}
           />
         </div>
+        <div>
+          {this.state.miniCart && (
+            <CartModal {...this.state} productId={productId} />
+          )}
+        </div>
+        {this.state.miniCart && (
+          <div className="cartMask" onClick={this.handleMiniCart}></div>
+        )}
       </div>
     );
   }
