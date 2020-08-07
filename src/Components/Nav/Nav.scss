@@ -1,0 +1,219 @@
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navWrapper {
+  position: fixed;
+  width: 100%;
+  height: 110px;
+  letter-spacing: -0.06em;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  z-index: 100;
+
+  .navFirst {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    height: 40px;
+    margin: 0 auto;
+    border-bottom: 1px solid #e5e5e5;
+
+    .navFirstLeft {
+      display: flex;
+      width: 400px;
+      height: 40px;
+      list-style: none;
+
+      .leftList {
+        @include flexCenter;
+        border-right: 1px solid #e5e5e5;
+        padding: 0 20px;
+        min-width: 50px;
+        color: #8d8d8d;
+        font-size: 12px;
+        text-decoration: none;
+        cursor: pointer;
+
+        .link {
+          color: #8d8d8d;
+
+          &:hover {
+            color: black;
+          }
+        }
+        &:focus {
+          color: #8d8d8d;
+        }
+        &:hover {
+          color: black;
+        }
+
+        img {
+          width: 35px;
+        }
+
+        .converse {
+          width: 90px;
+        }
+      }
+    }
+
+    .navFirstRight {
+      @include flexCenter;
+      min-width: 300px;
+      height: 40px;
+      padding: 0;
+      margin-right: 20px;
+      list-style: none;
+
+      .rightList {
+        padding: 0 11px;
+        font-size: 12px;
+        color: #8d8d8d;
+        cursor: pointer;
+
+        &:hover {
+          color: #111;
+        }
+
+        a {
+          color: #8d8d8d;
+
+          &:hover {
+            color: #111;
+          }
+        }
+
+        .cart {
+          width: 45px;
+          cursor: pointer;
+        }
+
+        .address {
+          width: 90px;
+        }
+      }
+    }
+  }
+  .navSecond {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 32px 0 30px;
+    font-size: 14px;
+
+    .logoWrapper {
+      display: flex;
+      width: 194px;
+      height: 70px;
+
+      img {
+        width: 80px;
+        height: 65px;
+      }
+    }
+
+    .navSecondMenu {
+      display: inline;
+      padding: 0;
+      line-height: 26px;
+      text-align: center;
+      vertical-align: middle;
+      width: calc(100% - 418px);
+
+      .secondList {
+        display: inline-block;
+        padding: 22.275px 20px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        color: #111;
+
+        &:hover {
+          cursor: pointer;
+          border-bottom: 2px solid #111;
+        }
+      }
+    }
+
+    .searchWrapper {
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: 224px;
+      height: 40px;
+
+      img {
+        position: absolute;
+        width: 18px;
+        left: 27px;
+      }
+
+      .searchInput {
+        width: 100%;
+        padding: 10px 30px 10px 49px;
+        border: 1px solid #e5e5e5;
+        border-radius: 2px;
+        outline: none;
+
+        &:focus {
+          border: 1px solid #111;
+        }
+      }
+      .searchFilterWrapper {
+        position: absolute;
+        width: 224px;
+        height: 280px;
+        top: 38px;
+        margin-top: 16px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        z-index: 100;
+
+        h4 {
+          display: block;
+          padding: 20px 38px;
+          font-size: 16px;
+          font-weight: bold;
+        }
+
+        ul {
+          padding-bottom: 25px;
+          list-style: none;
+
+          li {
+            position: relative;
+
+            .filterLink {
+              display: inline-block;
+              width: 100%;
+              height: 20px;
+              padding: 20px 55px 0 15px;
+              font-size: 14px;
+              color: #111;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.searchMask {
+  position: fixed;
+  top: 108px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 11;
+}
+
+.off {
+  display: none;
+}

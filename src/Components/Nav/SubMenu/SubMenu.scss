@@ -1,0 +1,69 @@
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subMenuWrapper {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 111px;
+  left: 0;
+  width: 100%;
+  min-width: 120px;
+  margin: 0 auto;
+  padding: 45px 0;
+  letter-spacing: -0.06em;
+  border-bottom: 1px solid #dedfda;
+  background-color: #ffffff;
+
+  .subLeftListWrapper {
+    width: 180px;
+    padding-left: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-right: 1px solid #dedfda;
+
+    li {
+      font-weight: 300;
+      color: #111;
+      line-height: 1.8;
+      cursor: pointer;
+
+      span {
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      &:hover {
+        color: #dedfda;
+      }
+    }
+  }
+  .subCenterListWrapper {
+    width: 167px;
+    padding-left: 30px;
+
+    span {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    li {
+      font-size: 13px;
+      font-weight: 300;
+      color: #111;
+      line-height: 1.8;
+      cursor: pointer;
+
+      &:hover {
+        color: #dedfda;
+      }
+    }
+
+    &:last-child {
+      border-left: 1px solid #dedfda;
+    }
+  }
+}
