@@ -1,19 +1,15 @@
 .wrapper {
   padding-top: 110px;
-
   .contentArea {
     margin-top: 70px;
-
     .signUpWarp {
       padding: 0 20px 32px;
       box-sizing: border-box;
       margin: 0 auto;
       max-width: 420px;
-
       .signUpHeader {
         margin-bottom: 40px;
         text-align: center;
-
         h2 {
           margin-top: 15px;
           margin-bottom: 15px;
@@ -21,7 +17,6 @@
           font-size: 24px;
           font-weight: 500;
         }
-
         .headerGray {
           text-align: center;
           line-height: 20px;
@@ -42,7 +37,6 @@
             box-sizing: border-box;
             margin-bottom: 10px;
             border-radius: 3px;
-
             .kakaoLogo {
               width: 24px;
               height: 25px;
@@ -55,7 +49,6 @@
               box-sizing: border-box;
             }
           }
-
           .facebook {
             background-color: #21538a;
             border-color: #21538a;
@@ -65,7 +58,6 @@
             box-sizing: border-box;
             color: #fff;
             border-radius: 3px;
-
             .facebookText {
               padding-top: 12px;
               width: 310px;
@@ -74,7 +66,6 @@
               text-align: center;
               box-sizing: border-box;
             }
-
             .facebookLogo {
               padding-top: 7px;
               width: 24px;
@@ -86,7 +77,6 @@
           margin-bottom: 35px !important;
           border-bottom: 1px solid #ccc;
           position: relative;
-
           .orText {
             background-color: #fff;
             display: block;
@@ -102,14 +92,12 @@
         .inputArea {
           display: flex;
           flex-direction: column;
-
           input::placeholder {
             color: #999999;
           }
           input:focus {
             border: black 1px solid;
           }
-
           .noneValue {
             color: #fe0000;
             font-size: 10px;
@@ -119,7 +107,6 @@
               display: inline;
             }
           }
-
           .inputHigh {
             width: 100%;
             height: 40px;
@@ -127,12 +114,10 @@
             padding: 9px 12px;
             outline: none;
             box-sizing: border-box;
-
             &.value {
               border: 1px solid #fe0000;
             }
           }
-
           .inputLow {
             margin-top: 15px;
             width: 100%;
@@ -141,13 +126,11 @@
             padding: 9px 12px;
             outline: none;
             box-sizing: border-box;
-
             &.value {
               border: 1px solid #fe0000;
             }
           }
         }
-
         .twoDragon {
           margin-top: 40px;
         }
@@ -162,7 +145,6 @@
             font-size: 12px;
             color: #8d8d8d;
           }
-
           u {
             text-decoration: underline;
           }
@@ -171,7 +153,6 @@
           padding-top: 40px;
           font-size: 11px;
           line-height: 1.5;
-
           div {
             padding-top: 5px;
           }
@@ -197,10 +178,8 @@
     }
   }
 }
-
 .selectionHide {
   margin-top: 30px;
-
   .birthDay {
     width: 100%;
     height: 40px;
@@ -209,11 +188,9 @@
     outline: none;
     box-sizing: border-box;
   }
-
   .gender {
     display: flex;
     margin-top: 15px;
-
     .genderCheck {
       display: flex;
       justify-content: center;
@@ -227,11 +204,9 @@
     }
   }
 }
-
 .none {
   display: none;
 }
-
 .genderDark {
   display: flex;
   justify-content: center;

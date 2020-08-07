@@ -83,7 +83,7 @@
 
   .leftFilterWrapper {
     position: fixed;
-    padding: 0 48px;
+    margin: 48px;
     width: 192px;
     height: 600px;
     overflow-y: scroll;
@@ -165,6 +165,7 @@
 
   .contentsBody {
     width: 76%;
+    padding-top: 75px;
     margin: 0 48px 0 288px;
     min-height: 1633px;
 

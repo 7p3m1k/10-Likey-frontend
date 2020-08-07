@@ -7,12 +7,10 @@ class SignIn extends Component {
     email: "",
     password: "",
   };
-
   loginHandler = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
-
   loginClickHandler = () => {
     const { email, password } = this.state;
     fetch("http://10.58.2.17:8000/auth/login", {
@@ -28,12 +26,11 @@ class SignIn extends Component {
       .then((res) => res.json())
       .then((res) => console.log(res));
   };
-
   render() {
     const { isOpen, close } = this.props;
     return (
       <>
-        {isOpen ? (
+        {isOpen && (
           <div className="modal">
             <div onClick={close}>
               <div className="loginModal">
@@ -42,6 +39,7 @@ class SignIn extends Component {
                 </span>
                 <div className="modalContents" onClick={isOpen}>
                   <img
+                    alt="나이키 로그인 아이콘"
                     className="signinIcon"
                     src="/Images/SignIn/signinIcon.png"
                   />
@@ -61,30 +59,30 @@ class SignIn extends Component {
                   />
                   <div className="loginMid">
                     <label className="autoLogin" for="hint">
-                      {" "}
                       <input type="checkbox" id="hint" /> 로그인 유지하기
                     </label>
                     <div className="autoLogin">아이디/비밀번호 찾기</div>
                   </div>
                   <button className="loginBtn" onClick={this.loginClickHandler}>
-                    {" "}
-                    로그인{" "}
+                    로그인
                   </button>
                   <div className="socialBox">
                     <div className="kakao">
                       <img
+                        alt="카카오톡 로고"
                         className="kakaoLogo"
                         src="/Images/SignIn/kakao.png"
                       />
-                      <div className="kakaoText">카카오 계정으로 신규가입</div>
+                      <div className="kakaoText">카카오 계정으로 로그인</div>
                     </div>
                     <div className="facebook">
                       <img
+                        alt="페이스북 로고"
                         className="facebookLogo"
                         src="/Images/SignIn/facebook.png"
                       />
                       <div className="facebookText">
-                        페이스북 계정으로 신규가입
+                        페이스북 계정으로 로그인
                       </div>
                     </div>
                   </div>
@@ -98,10 +96,9 @@ class SignIn extends Component {
               </div>
             </div>
           </div>
-        ) : null}
+        )}
       </>
     );
   }
 }
-
 export default SignIn;

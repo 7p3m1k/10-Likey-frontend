@@ -1,6 +1,17 @@
 .Detail {
-  margin: 108px auto 0;
+  margin: 0px auto;
+  padding-top: 108px;
   max-width: 1400px;
   display: flex;
   justify-content: center;
+
+  .cartMask {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 110px;
+    right: 330px;
+    background-color: grey;
+    opacity: 0.6;
+  }
 }
