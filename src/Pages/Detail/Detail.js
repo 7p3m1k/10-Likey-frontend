@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import DetailLeft from "./DetailLeft";
 import DetailRight from "./DetailRight";
-import "./Detail.scss";
 import { detailAPI } from "../../config";
+import "./Detail.scss";
 
 class Detail extends Component {
   constructor() {
@@ -21,7 +21,7 @@ class Detail extends Component {
   }
 
   doRequest = () => {
-    fetch(detailAPI + `/${this.props.match.params.productId}`, {
+    fetch(`${detailAPI}${this.props.match.params.productId}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -63,6 +63,7 @@ class Detail extends Component {
   handleQauntity = (adj) => {
     const { quantity, maxQuantity } = this.state;
     if (adj === -1 && quantity === 1) {
+      this.setState({ quantity: 1 });
     } else if (quantity >= 1) {
       if (adj === +1 && quantity === maxQuantity) {
         return;
@@ -75,14 +76,8 @@ class Detail extends Component {
   //해당 사이즈의 재고(counts)가 0일때 수량조절버튼을 disabled="true"로, 0이 아닐때 disabled="false" (true로 초기에설정함으로써 버튼이 한번도 안눌렸을땐 활성화X)
   //해당사이즈의 재고량을 state의 maxQuantity키의 값으로 저장한다.
   selectedSize = (s) => {
-    s === 0
-      ? this.setState({
-          disabled: true,
-        })
-      : this.setState({
-          disabled: false,
-        });
     this.setState({
+      disabled: s === 0 ? true : false,
       quantity: 1,
       maxQuantity: s,
     });

@@ -17,6 +17,7 @@ export default class DetailRight extends Component {
       selectedSize,
       history,
     } = this.props;
+
     return (
       <div className="DetailRight">
         <div className="info">
