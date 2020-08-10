@@ -54,7 +54,6 @@ class SignUp extends Component {
   kakaoLogin = (props) => {
     Kakao.Auth.login({
       success: function (authObj) {
-        console.log(JSON.stringify(authObj));
         fetch("http://10.58.2.17:8000/auth/kakao", {
           method: "POST",
           headers: {
@@ -64,7 +63,6 @@ class SignUp extends Component {
         })
           .then((res) => res.json())
           .then((res) => {
-            console.log(res);
             if (res.message === "User created") {
               alert("회원가입에 성공하셨습니다.");
               props.history.push("/signin");
