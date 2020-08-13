@@ -3,6 +3,7 @@ import { API } from "../../config";
 import Nav from "../../Components/Nav/Nav";
 import PageTop from "../../Components/PageTop/PageTop";
 import Products from "../Main/Products/Products";
+import LoadingModal from "../../Components/LoadingModal/LoadingModal";
 import "./Main.scss";
 import mainData from "./mainData";
 
@@ -18,6 +19,7 @@ class Main extends Component {
     products: [],
     sortTitle: "",
     offSet: 0,
+    isLoading: false,
   };
 
   componentDidMount() {
@@ -37,6 +39,10 @@ class Main extends Component {
       .then((res) => res.json())
       .then((res) => {
         this.setState({ products: res.products });
+        this.setState({ isLoading: true });
+        setTimeout(() => {
+          this.setState({ isLoading: false });
+        }, 350);
       });
   };
 
@@ -45,6 +51,10 @@ class Main extends Component {
       .then((res) => res.json())
       .then((res) => {
         this.setState({ products: res.products });
+        this.setState({ isLoading: true });
+        setTimeout(() => {
+          this.setState({ isLoading: false });
+        }, 350);
       });
   };
 
@@ -54,6 +64,10 @@ class Main extends Component {
       .then((res) => res.json())
       .then((res) => {
         this.setState({ products: res.products });
+        this.setState({ isLoading: true });
+        setTimeout(() => {
+          this.setState({ isLoading: false });
+        }, 350);
       });
   };
 
@@ -67,6 +81,10 @@ class Main extends Component {
           (a, b) => a.price - b.price
         );
         this.setState({ lowestCost });
+        this.setState({ isLoading: true });
+        setTimeout(() => {
+          this.setState({ isLoading: false });
+        }, 350);
       });
   };
 
@@ -80,6 +98,10 @@ class Main extends Component {
           (a, b) => b.price - a.price
         );
         this.setState({ highestCost });
+        this.setState({ isLoading: true });
+        setTimeout(() => {
+          this.setState({ isLoading: false });
+        }, 500);
       });
   };
 
@@ -101,6 +123,10 @@ class Main extends Component {
             products: [...this.state.products, ...res.products],
             offSet: this.state.offSet + LIMIT,
           });
+          this.setState({ isLoading: true });
+          setTimeout(() => {
+            this.setState({ isLoading: false });
+          }, 350);
         });
     }
   };
@@ -125,6 +151,7 @@ class Main extends Component {
 
     return (
       <div className="Main">
+        {this.state.isLoading && <LoadingModal />}
         <PageTop />
         <Nav />
         <div className="wrapper">
@@ -164,6 +191,7 @@ class Main extends Component {
                   className={!sortActive ? "off" : "sortBtn"}
                 >
                   <li onClick={() => chooseNewest("신상품순")}>신상품순</li>
+
                   <li onClick={() => chooseLowestCost("낮은 가격순")}>
                     낮은 가격순
                   </li>

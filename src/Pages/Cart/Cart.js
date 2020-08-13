@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import CartList from "../../Components/CartList/CartList";
+import LoadingModal from "../../Components/LoadingModal/LoadingModal";
 import "./Cart.scss";
 import { API } from "../../config";
 
 class Cart extends Component {
   state = {
+    isLoading: false,
     carts: [],
   };
 
@@ -16,6 +18,10 @@ class Cart extends Component {
       },
     }).then((res) => {
       this.setState({ carts: [] });
+      this.setState({ isLoading: true });
+      setTimeout(() => {
+        this.setState({ isLoading: false });
+      }, 350);
     });
   };
 
@@ -84,6 +90,7 @@ class Cart extends Component {
                           onClick={this.deleteAllHandler}
                         >
                           <a>전체삭제</a>
+                          {this.state.isLoading && <LoadingModal />}
                         </div>
                         {carts.map((cart) => (
                           <CartList

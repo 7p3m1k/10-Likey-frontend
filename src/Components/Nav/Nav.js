@@ -3,15 +3,18 @@ import { Link } from "react-router-dom";
 import SignIn from "../SignIn/SignIn";
 import { API } from "../../config";
 import Secondlist from "./Secondlist";
+import LoadingModal from "../LoadingModal/LoadingModal";
+import ScrollLock, { TouchScrollable } from "react-scrolllock";
 import "./Nav.scss";
 
 class Nav extends Component {
   state = {
     active: "",
-    mask: "",
+    mask: false,
     value: "",
     products: [],
     isModalOpen: false,
+    isLoading: false,
     isLogin: localStorage.getItem("token"),
   };
 
@@ -38,6 +41,13 @@ class Nav extends Component {
 
   logInHandler = () => {
     this.setState({ isLogin: true });
+  };
+
+  handleModals = () => {
+    this.setState({ isLoading: true });
+    setTimeout(() => {
+      this.setState({ isLoading: false, isModalOpen: true });
+    }, 300);
   };
 
   render() {
@@ -99,9 +109,8 @@ class Nav extends Component {
                   </Link>
                 </li>
                 <li className="rightList">
-                  <span onClick={() => this.setState({ isModalOpen: true })}>
-                    &nbsp; / 로그인
-                  </span>
+                  <span onClick={this.handleModals}>&nbsp; / 로그인</span>
+                  {this.state.isLoading && <LoadingModal />}
                   {this.state.isModalOpen && (
                     <SignIn
                       close={this.closeModal}
@@ -167,13 +176,18 @@ class Nav extends Component {
                 className="searchInput"
                 placeholder="검색"
               />
+              <ScrollLock isActive={mask === true} />
               <div className={mask ? "searchFilterWrapper" : "off"}>
                 <h4 className={!value ? "h4" : "off"}>검색어를 입력해주세요</h4>
                 <ul className="filterKeywordWrapper">
                   {products.map(({ productId, title }, idx) => {
                     if (value && title.includes(value)) {
                       return (
-                        <li key={idx} className="filterKeyword">
+                        <li
+                          onClick={() => this.setState({ mask: !mask })}
+                          key={idx}
+                          className="filterKeyword"
+                        >
                           <Link
                             className="filterLink"
                             to={`/detail/${productId}`}

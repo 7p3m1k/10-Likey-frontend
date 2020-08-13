@@ -1,7 +1,22 @@
 import React, { Component } from "react";
+import LoadingModal from "../LoadingModal/LoadingModal";
 import "./CartList.scss";
 
 class CartList extends Component {
+  state = {
+    isLoading: false,
+    isLogin: localStorage.getItem("token"),
+  };
+
+  handleModals = () => {
+    const { size, productId } = this.props.cart;
+    this.props.deleteOneHandler({ productId, size });
+    this.setState({ isLoading: true });
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 350);
+  };
+
   render() {
     const { count, imageUrl, title, price, size, productId } = this.props.cart;
     return (
@@ -20,12 +35,10 @@ class CartList extends Component {
           <div className="totalPrice">
             {(count * price).toLocaleString()} 원
           </div>
-          <div
-            className="xPointer"
-            onClick={() => this.props.deleteOneHandler({ productId, size })}
-          >
+          <div className="xPointer" onClick={() => this.handleModals()}>
             &times;
           </div>
+          {this.state.isLoading && <LoadingModal />}
         </div>
         <div className="itemWish">
           <span>위시리스트에 추가</span>

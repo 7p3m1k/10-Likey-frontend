@@ -42,12 +42,13 @@ class SignIn extends Component {
 
   kakaoLogin = ({ close, logInHandler }) => {
     Kakao.Auth.login({
-      success: function (authObj) {
+      success: function ({ access_token }) {
+        console.log(access_token);
         fetch(`${API}/auth/kakao`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: authObj.access_token,
+            Authorization: access_token,
           },
         })
           .then((res) => res.json())
