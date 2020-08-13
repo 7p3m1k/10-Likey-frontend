@@ -1,12 +1,27 @@
-.loading {
-  width: 500px;
-  height: 500px;
-  background-color: blue;
+.LoadingModal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 101;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .loding {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 150px;
+    background-color: white;
+    position: relative;
+    box-sizing: border-box;
+    margin: 300px auto;
+    background: #fff;
 
-  img {
+    .loadingText {
+      margin-top: 35px;
+    }
   }
 }
