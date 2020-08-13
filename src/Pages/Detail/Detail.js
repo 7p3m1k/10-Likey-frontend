@@ -4,7 +4,6 @@ import DetailRight from "./DetailRight";
 import PageTop from "../../Components/PageTop/PageTop";
 import CartModal from "../../Components/CartModal/CartModal";
 import { API } from "../../config";
-import { detailAPI, cartAPI, token } from "../../config";
 import ScrollLock, { TouchScrollable } from "react-scrolllock";
 import "./Detail.scss";
 
@@ -27,7 +26,7 @@ class Detail extends Component {
   }
 
   doRequest = () => {
-    fetch(`${detailAPI}/product/${this.props.match.params.productId}`)
+    fetch(`${API}/product/${this.props.match.params.productId}`)
       .then((res) => res.json())
       .then((res) => {
         const {
@@ -88,11 +87,11 @@ class Detail extends Component {
     const productId = this.props.match.params.productId;
     const { selectedSize, quantity } = this.state;
 
-    fetch(`${cartAPI}/cart`, {
+    fetch(`${API}/cart`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json", //method가 post일때 body내용이 json형식이라는 것을 미리 알려줌. body가없는 getmethod는 필요없음 ㅎㅎ
-        Authorization: token,
+        Authorization: localStorage.getItem("token"),
       },
       body: JSON.stringify({
         productId,
