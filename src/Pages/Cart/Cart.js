@@ -54,7 +54,7 @@ class Cart extends Component {
   render() {
     const { carts } = this.state;
     const totalPrice =
-      carts.length && //reduce는 배열에 값이 없으면 실행이 안되니까 조건을 걸어준다.
+      carts.length &&
       carts
         .reduce((totalPrice, cart) => {
           totalPrice = totalPrice + cart.price * cart.count;

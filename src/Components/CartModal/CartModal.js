@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { cartAPI, token } from "../../config";
+import { API } from "../../config";
 import { withRouter } from "react-router-dom";
 import "./CartModal.scss";
 
@@ -7,9 +7,9 @@ const CartModal = (props) => {
   const [carts, setCarts] = useState([]);
 
   useEffect(() => {
-    fetch(cartAPI, {
+    fetch(`${API}/cart`, {
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem("token"),
       },
     })
       .then((res) => res.json())
@@ -17,12 +17,12 @@ const CartModal = (props) => {
   }, []);
 
   const deleteItem = (productObj) => {
-    fetch(`${cartAPI}${productObj.productId}`, {
+    fetch(`${API}/cart/${productObj.productId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
-      }, //stateless
+        Authorization: localStorage.getItem("token"),
+      },
       body: JSON.stringify({ size: productObj.size }),
     }).then((res) =>
       setCarts(

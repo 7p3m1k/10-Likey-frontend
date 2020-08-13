@@ -4,7 +4,8 @@
 
   ul {
     display: flex;
-    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
 
     .optionsImg {
       width: 72px;

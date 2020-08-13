@@ -16,7 +16,7 @@ class Nav extends Component {
   };
 
   componentDidMount() {
-    fetch(`${API}/titles`)
+    fetch(`${API}/product/titles`)
       .then((res) => res.json())
       .then((res) => {
         this.setState({ products: res.titles });
@@ -43,6 +43,7 @@ class Nav extends Component {
   render() {
     const { mask, value, products } = this.state;
     const { getValue } = this;
+
     return (
       <div className="Nav">
         <div className="navWrapper">
@@ -167,7 +168,7 @@ class Nav extends Component {
                 placeholder="검색"
               />
               <div className={mask ? "searchFilterWrapper" : "off"}>
-                <h4>검색어를 입력해주세요</h4>
+                <h4 className={!value ? "h4" : "off"}>검색어를 입력해주세요</h4>
                 <ul className="filterKeywordWrapper">
                   {products.map(({ productId, title }, idx) => {
                     if (value && title.includes(value)) {

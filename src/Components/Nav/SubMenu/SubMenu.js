@@ -1,15 +1,22 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import "./SubMenu.scss";
-import NavData from "../NavData";
+import NavData from "../navData";
 
 class SubMenu extends Component {
+  goToMain = (idx) => {
+    if (idx === 0) {
+      this.props.history.push("/");
+    }
+  };
+
   render() {
     return (
       <div className="SubMenu">
         <div className="subMenuWrapper">
           <ul className="subLeftListWrapper">
             {NavData.NewReleases.map((data, idx) => (
-              <li key={idx}>
+              <li onClick={() => this.goToMain(idx)} key={idx}>
                 {data.list}
                 <span> {data.span}</span>
               </li>
@@ -33,4 +40,4 @@ class SubMenu extends Component {
   }
 }
 
-export default SubMenu;
+export default withRouter(SubMenu);

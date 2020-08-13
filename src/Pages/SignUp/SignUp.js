@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PageTop from "../../Components/PageTop/PageTop";
 import "../SignUp/SignUp.scss";
 import { API } from "../../config";
 const { Kakao } = window;
@@ -46,7 +47,8 @@ class SignUp extends Component {
     })
       .then((res) => res.json())
       .then((res) => {
-        alert(res.message);
+        alert("회원가입 하셨습니다!");
+        this.props.history.push("/");
       });
   };
   kakaoLogin = ({ push }) => {
@@ -61,7 +63,6 @@ class SignUp extends Component {
         })
           .then((res) => res.json())
           .then(({ message }) => {
-            //구조분해할당
             if (message === "User created") {
               alert("회원가입 하셨습니다!");
               push("/");
@@ -84,6 +85,7 @@ class SignUp extends Component {
     const { check, genderChecks, email, password } = this.state;
     return (
       <>
+        <PageTop />
         <div className="wrapper">
           <div className="contentArea">
             <div className="signUpWarp">
