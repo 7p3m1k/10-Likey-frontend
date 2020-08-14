@@ -86,6 +86,10 @@ class Detail extends Component {
   handleMiniCart = () => {
     const productId = this.props.match.params.productId;
     const { selectedSize, quantity } = this.state;
+    if (!localStorage.getItem("token")) {
+      alert("로그인을 해주세요");
+      return;
+    }
 
     fetch(`${API}/cart`, {
       method: "POST",
